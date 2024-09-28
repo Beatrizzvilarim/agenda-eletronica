@@ -38,6 +38,7 @@ class Database extends Config
         'cachedir' => '',
         'charSet'  => 'utf8',
         'DBCollat' => 'utf8_general_ci',
+        'charset' => 'utf8mb4',
         'swap_pre' => '',
         'encrypt'  => false,
         'compress'  => false,
