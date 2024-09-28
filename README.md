@@ -1,61 +1,66 @@
-# CodeIgniter 4 Framework
+# Agenda Eletrônica
 
-## What is CodeIgniter?
+Este projeto é uma aplicação web para gerenciamento de atividades. Os usuários podem se registrar, fazer login, cadastrar atividades e visualizar essas atividades em um calendário. Embora algumas funcionalidades não tenham sido implementadas devido ao tempo, as principais estão operacionais. Existem alguns erros (fatal errors) que aparecem durante a execução, mas eles não influenciam no resultado final da aplicação, tanto na interface quanto no banco de dados.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Índice
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Instalação](#instalação)
+- [Uso](#uso)
+- [Estrutura do Banco de Dados](#estrutura-do-banco-de-dados)
+- [Funcionalidades](#funcionalidades)
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Tecnologias Utilizadas
+- **PHP**: 8.2.12
+- **MySQL**: 10.4.32-MariaDB
+- **Apache**: 2.4.58
+- **Bootstrap**: 4.0.0
+- **jQuery**: 3.6.0
+- **CodeIgniter**: 4.5.5
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## Instalação
 
-## Important Change with index.php
+1. **Clone o repositório:**
+   ```bash
+   git clone <URL do repositório>
+   ```
+2. **Coloque o diretório `agenda-eletronica` dentro da pasta `htdocs` do XAMPP.**
+3. **Crie o banco de dados:**
+   - Nome do banco de dados: `agenda_db`
+4. **Importe o arquivo SQL de criação de tabelas, se necessário.**
+5. **Inicie o servidor Apache e MySQL no XAMPP.**
+6. **Acesse a aplicação através do navegador:**
+   ```plaintext
+   http://localhost/agenda-eletronica/public/
+   ```
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+## Uso
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+- **Registrar Usuário**: Acesse a página de registro e preencha os campos necessários.
+- **Login**: Após o registro, faça login com suas credenciais.
+- **Gerenciar Atividades**: Você poderá criar, visualizar, editar e deletar atividades.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## Estrutura do Banco de Dados
 
-## Repository Management
+### Tabelas
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+- **Tabela: `users`**
+  - `id` (INT, AUTO_INCREMENT, PRIMARY KEY)
+  - `login` (VARCHAR)
+  - `password` (VARCHAR)
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+- **Tabela: `activities`**
+  - `id` (INT, AUTO_INCREMENT, PRIMARY KEY)
+  - `user_id` (INT, FOREIGN KEY)
+  - `name` (VARCHAR)
+  - `description` (TEXT)
+  - `start_datetime` (DATETIME)
+  - `end_datetime` (DATETIME)
+  - `status` (VARCHAR)
 
-## Contributing
+## Funcionalidades
 
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
-
-## Server Requirements
-
-PHP version 8.1 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+- Cadastro e autenticação de usuários. (FEITO)
+- CRUD (Criar, Ler, Atualizar, Deletar) de atividades. (FEITO)
+- Exibição de atividades em um calendário. (NÂO REALIZADO)
 
